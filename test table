@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrapen">
+      <div class="conp">
+        <input id="inp" type="text" />
+        <input id="button" type="button" />
+      </div>
+      <div class="contener"></div>
+    </div>
+
+    <script src="js/js.js"></script>
+  </body>
+</html>
+
+
+.wrapen {
+	width: 1200px;
+	margin: 15px auto;
+}
+
+.contener {
+	margin: auto;
+	display: flex;
+	flex: 1 1 ;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.list {
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.conp {
+	display: grid;
+	justify-items: center;
+}
+
+#inp {
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+}
+
+#button {
+	display: inline-block;
+
+}
+
+
+
+
+const contener = document.querySelector('.contener')
+const inp = document.getElementById('inp')
+const button = document.getElementById('button')
+const a = [
+	{
+		"username": "user-001",
+		"action": "logged_in",
+		"action_createad_at": "2022-05-08T07:01:09.171245Z"
+	}, {
+		"username": "user-001",
+		"action": "button_sign_in_tapped",
+		"action_createad_at": "2022-05-08T07:02:09.171245Z"
+	},
+	{
+		"username": "user-001",
+		"action": "button_log_out_tapped",
+		"action_createad_at": "2022-05-08T07:03:09.171245Z"
+	},
+	{
+		"username": "user-001",
+		"action": "logged_in",
+		"action_createad_at": "2022-05-08T07:01:09.271245Z"
+	}, {
+		"username": "user-001",
+		"action": "button_sign_in_tapped",
+		"action_createad_at": "2022-05-08T07:03:09.471245Z"
+	},
+	{
+		"username": "user-001",
+		"action": "button_log_out_tapped",
+		"action_createad_at": "2022-05-08T07:03:09.471245Z"
+	},
+	{
+		"username": "user-001",
+		"action": "logged_in",
+		"action_createad_at": "7022-05-08T07:01:09.171245Z"
+	}, {
+		"username": "user-001",
+		"action": "button_sign_in_tapped",
+		"action_createad_at": "6022-05-08T07:02:09.171245Z"
+	},
+	{
+		"username": "user-001",
+		"action": "button_log_out_tapped",
+		"action_createad_at": "5022-05-08T07:03:09.171245Z"
+	},
+	
+]
+
+
+a.forEach(el => {
+	let box = document.createElement('div')
+	box.classList.add('list')
+	contener.append(box)
+	for (i in el) {
+		let list = document.createElement('div')
+		list.innerHTML = `${i} :${el[i]} `
+		box.append(list)
+	}
+
+
+})
+const box = document.querySelectorAll('.list')
+let scet = 0
+const del = () => {
+	for (i of box) {
+
+		let texx = i.innerHTML.split(',')
+		for (i of texx) {
+
+			if (i.includes(inp.value)) {
+				console.log(inp.value.length)
+				box[scet].style.display = ''
+			}
+			else { box[scet].style.display = 'none' }
+
+		}
+		scet++
+	}
+	scet=0
+
+}
+
+button.addEventListener('click', del)
+
+
